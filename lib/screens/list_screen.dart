@@ -5,7 +5,7 @@ import '../models/cat.dart';
 final List<Cat> cats = [
   Cat(
     id:"0",
-    name: "별님이",
+    name: "김보니",
     title: "오늘의 귀염둥이",
     link: "assets/images/cat_00.jpg",
     likeCount: 1930,
@@ -14,7 +14,7 @@ final List<Cat> cats = [
   ),
   Cat(
     id:"1",
-    name: "버찌",
+    name: "보보니",
     title: "너만 보인다 말이야~",
     link: "assets/images/cat_01.jpg",
     likeCount: 3023,
