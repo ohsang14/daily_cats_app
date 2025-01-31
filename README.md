@@ -26,6 +26,7 @@ GitHub에서 프로젝트를 클론하세요:
    git clone https://github.com/username/daily_dogs_app.git
    cd daily_dogs_app
    flutter pub get
+   open -a simulator
    flutter run
 
 
