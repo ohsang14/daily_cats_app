@@ -16,6 +16,7 @@ class DetailScreen extends StatefulWidget {
     super.key,
     required this.cat,
   });
+
   final Cat cat;
 
   @override
@@ -23,6 +24,8 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  bool isLiked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,10 +65,11 @@ class _DetailScreenState extends State<DetailScreen> {
                       children: [
                         IconButton(
                           padding: EdgeInsets.zero,
-                          icon: const Icon(
-                            Icons.thumb_up_outlined,
-                          ),
+                          icon: Icon(isLiked ? Icons.thumb_up : Icons.thumb_up_outlined),
                           onPressed: () {
+                            setState(() {
+                              isLiked = !isLiked;
+                            });
                             // 좋아요 버튼 눌렀을 때 동작 추가
                           },
                         ),
@@ -82,30 +86,32 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
                 ...List.generate(
                   replies.length,
-                  (int index) => Padding(
-                    padding: const EdgeInsets.only(
-                      top: 10.0,
-                    ),
-                    child: Row(
-                      children: [
-                        const Text(
-                          "익명",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                      (int index) =>
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 10.0,
                         ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 3.0),
+                        child: Row(
+                          children: [
+                            const Text(
+                              "익명",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 3.0),
+                            ),
+                            Text(replies[index]),
+                          ],
                         ),
-                        Text(replies[index]),
-                      ],
-                    ),
-                  ),
+                      ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 10.0,
                   ),
                   child: Text(
-                    "${widget.cat.created.year}년 ${widget.cat.created.month}월 ${widget.cat.created.day}일",
+                    "${widget.cat.created.year}년 ${widget.cat.created
+                        .month}월 ${widget.cat.created.day}일",
                     style: const TextStyle(
                       color: Color(0xFFAAAAAA),
                     ),
@@ -116,8 +122,11 @@ class _DetailScreenState extends State<DetailScreen> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                color: Theme.of(context).canvasColor,
-                padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                color: Theme
+                    .of(context)
+                    .canvasColor,
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0, vertical: 5.0),
                 child: Row(
                   children: [
                     Expanded(
